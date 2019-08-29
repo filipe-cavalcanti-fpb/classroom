@@ -1,0 +1,63 @@
+package com.sogo.classroom.persistence.DTO;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+public class MiniCursoCadastroDTO implements Serializable {
+
+    private static final long serialVersionUID = -6459368145631381206L;
+
+    @NotNull
+    @NotBlank
+    private String nome;
+
+    @NotNull
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime dataRealizacao;
+
+    @NotNull
+    @Min(value = 0)
+    private Byte duracaoPrevista;
+
+    @NotNull
+    @Min(value = 0)
+    private Integer totalVagas;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public LocalDateTime getDataRealizacao() {
+        return dataRealizacao;
+    }
+
+    public void setDataRealizacao(LocalDateTime dataRealizacao) {
+        this.dataRealizacao = dataRealizacao;
+    }
+
+    public Byte getDuracaoPrevista() {
+        return duracaoPrevista;
+    }
+
+    public void setDuracaoPrevista(Byte duracaoPrevista) {
+        this.duracaoPrevista = duracaoPrevista;
+    }
+
+    public Integer getTotalVagas() {
+        return totalVagas;
+    }
+
+    public void setTotalVagas(Integer totalVagas) {
+        this.totalVagas = totalVagas;
+    }
+}

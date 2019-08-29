@@ -25,15 +25,15 @@ public class MiniCurso implements Serializable {
     private LocalDateTime dataRealizacao;
 
     @Column(name = "duracao_prevista", nullable = false)
-    private LocalTime duracaoPrevista;
+    private Byte duracaoPrevista;
 
-    @Column(name = "total_vagas", nullable = false)
+    @Column(name = "total_vagas", nullable = false, columnDefinition = "int default 0")
     private Integer totalVagas;
 
     @OneToMany(mappedBy = "miniCurso", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ParticipanteMiniCurso> participantesMiniCurso;
 
-    @Column(name = "vagas_preenchidas", nullable = false)
+    @Column(name = "vagas_preenchidas", columnDefinition = "int default 0")
     private Integer vagasPreenchidas;
 
     @ManyToOne
@@ -64,12 +64,20 @@ public class MiniCurso implements Serializable {
         this.dataRealizacao = dataRealizacao;
     }
 
-    public LocalTime getDuracaoPrevista() {
+    public Byte getDuracaoPrevista() {
         return duracaoPrevista;
     }
 
-    public void setDuracaoPrevista(LocalTime duracaoPrevista) {
+    public void setDuracaoPrevista(Byte duracaoPrevista) {
         this.duracaoPrevista = duracaoPrevista;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     public Integer getTotalVagas() {
