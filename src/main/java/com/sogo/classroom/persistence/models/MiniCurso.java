@@ -5,28 +5,32 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "sogo_mini_curso")
 public class MiniCurso implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -9151779811424490027L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false, length = 150)
     private String nome;
 
-    @Column(name = "data_realizacao")
+    @Column(name = "data_realizacao", nullable = false, unique = false)
     private LocalDateTime dataRealizacao;
 
-    @Column(name = "duracao_prevista")
+    @Column(name = "duracao_prevista", nullable = false)
     private LocalTime duracaoPrevista;
 
-    @Column(name = "vagas")
-    private Integer vagas;
+    @Column(name = "total_vagas", nullable = false)
+    private Integer totalVagas;
+
+    @Column(name = "vagas_preenchidas", nullable = false)
+    private Integer vagasPreenchidas;
 
     public Long getId() {
         return id;
@@ -60,11 +64,37 @@ public class MiniCurso implements Serializable {
         this.duracaoPrevista = duracaoPrevista;
     }
 
-    public Integer getVagas() {
-        return vagas;
+    public Integer getTotalVagas() {
+        return totalVagas;
     }
 
-    public void setVagas(Integer vagas) {
-        this.vagas = vagas;
+    public void setTotalVagas(Integer totalVagas) {
+        this.totalVagas = totalVagas;
+    }
+
+    public Integer getVagasPreenchidas() {
+        return vagasPreenchidas;
+    }
+
+    public void setVagasPreenchidas(Integer vagasPreenchidas) {
+        this.vagasPreenchidas = vagasPreenchidas;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MiniCurso)) return false;
+        MiniCurso miniCurso = (MiniCurso) o;
+        return getId().equals(miniCurso.getId()) &&
+                Objects.equals(getNome(), miniCurso.getNome()) &&
+                Objects.equals(getDataRealizacao(), miniCurso.getDataRealizacao()) &&
+                Objects.equals(getDuracaoPrevista(), miniCurso.getDuracaoPrevista()) &&
+                Objects.equals(getTotalVagas(), miniCurso.getTotalVagas()) &&
+                Objects.equals(getVagasPreenchidas(), miniCurso.getVagasPreenchidas());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getNome(), getDataRealizacao(), getDuracaoPrevista(), getTotalVagas(), getVagasPreenchidas());
     }
 }
