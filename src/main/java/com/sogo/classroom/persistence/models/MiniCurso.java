@@ -30,11 +30,15 @@ public class MiniCurso implements Serializable {
     @Column(name = "total_vagas", nullable = false)
     private Integer totalVagas;
 
-    @OneToMany(mappedBy = "miniCurso")
+    @OneToMany(mappedBy = "miniCurso", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ParticipanteMiniCurso> participantesMiniCurso;
 
     @Column(name = "vagas_preenchidas", nullable = false)
     private Integer vagasPreenchidas;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_professor")
+    private Professor professor;
 
     public Long getId() {
         return id;

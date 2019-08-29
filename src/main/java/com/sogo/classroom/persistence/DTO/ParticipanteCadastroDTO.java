@@ -6,7 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class ParticipanteCadastroDTO implements Serializable {
 
@@ -20,7 +20,7 @@ public class ParticipanteCadastroDTO implements Serializable {
 
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento;
 
     @Email
     private String email;
@@ -44,11 +44,11 @@ public class ParticipanteCadastroDTO implements Serializable {
         this.cpf = cpf;
     }
 
-    public LocalDateTime getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDateTime dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

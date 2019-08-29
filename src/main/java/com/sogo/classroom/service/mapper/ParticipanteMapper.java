@@ -10,7 +10,7 @@ public class ParticipanteMapper {
         participante.setCpf(participanteCadastroDTO.getCpf());
         participante.setDataNascimento(participanteCadastroDTO.getDataNascimento());
         participante.setEmail(participanteCadastroDTO.getEmail());
-        participante.setNome(participante.getNome());
+        participante.setNome(participanteCadastroDTO.getNome());
         participante.setSenha(participanteCadastroDTO.getSenha());
         return participante;
     }
