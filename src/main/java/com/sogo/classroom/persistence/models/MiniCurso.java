@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -28,6 +29,9 @@ public class MiniCurso implements Serializable {
 
     @Column(name = "total_vagas", nullable = false)
     private Integer totalVagas;
+
+    @OneToMany(mappedBy = "miniCurso")
+    private List<ParticipanteMiniCurso> participantesMiniCurso;
 
     @Column(name = "vagas_preenchidas", nullable = false)
     private Integer vagasPreenchidas;
@@ -96,5 +100,13 @@ public class MiniCurso implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getNome(), getDataRealizacao(), getDuracaoPrevista(), getTotalVagas(), getVagasPreenchidas());
+    }
+
+    public List<ParticipanteMiniCurso> getParticipantesMiniCurso() {
+        return participantesMiniCurso;
+    }
+
+    public void setParticipantesMiniCurso(List<ParticipanteMiniCurso> participantesMiniCurso) {
+        this.participantesMiniCurso = participantesMiniCurso;
     }
 }

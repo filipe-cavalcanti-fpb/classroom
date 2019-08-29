@@ -1,10 +1,9 @@
 package com.sogo.classroom.persistence.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +17,9 @@ public class Participante extends Pessoa {
 
     @Column(name = "data_nascimento", nullable = false)
     private LocalDateTime dataNascimento;
+
+    @OneToMany(mappedBy = "participante")
+    private List<ParticipanteMiniCurso> miniCursosInscritos;
 
     public String getCpf() {
         return cpf;
@@ -50,4 +52,11 @@ public class Participante extends Pessoa {
         return Objects.hash(super.hashCode(), getCpf(), getDataNascimento());
     }
 
+    public List<ParticipanteMiniCurso> getMiniCursosInscritos() {
+        return miniCursosInscritos;
+    }
+
+    public void setMiniCursosInscritos(List<ParticipanteMiniCurso> miniCursosInscritos) {
+        this.miniCursosInscritos = miniCursosInscritos;
+    }
 }
