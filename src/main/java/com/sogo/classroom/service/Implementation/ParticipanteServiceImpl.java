@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 @Service
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 public class ParticipanteServiceImpl implements ParticipanteService {
@@ -21,5 +24,10 @@ public class ParticipanteServiceImpl implements ParticipanteService {
     @Transactional(propagation = Propagation.REQUIRED)
     public Participante saveParticipante(ParticipanteCadastroDTO participanteCadastroDTO) {
         return this.participanteRepository.save(ParticipanteMapper.mapper(participanteCadastroDTO));
+    }
+
+    @Override
+    public Participante findById(Long id) throws NoSuchElementException {
+        return this.participanteRepository.findById(id).isPresent();
     }
 }
