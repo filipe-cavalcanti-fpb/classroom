@@ -1,6 +1,6 @@
 package com.sogo.classroom.service.Implementation;
 
-import com.sogo.classroom.persistence.DTO.ParticipanteCadastroDTO;
+import com.sogo.classroom.persistence.DTO.participante.ParticipanteCadastroDTO;
 import com.sogo.classroom.persistence.models.Participante;
 import com.sogo.classroom.persistence.repositories.ParticipanteRepository;
 import com.sogo.classroom.service.declaration.ParticipanteService;

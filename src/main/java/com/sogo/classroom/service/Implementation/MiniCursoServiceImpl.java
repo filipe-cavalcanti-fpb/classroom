@@ -1,6 +1,6 @@
 package com.sogo.classroom.service.Implementation;
 
-import com.sogo.classroom.persistence.DTO.MiniCursoCadastroDTO;
+import com.sogo.classroom.persistence.DTO.miniCurso.MiniCursoCadastroDTO;
 import com.sogo.classroom.persistence.models.MiniCurso;
 import com.sogo.classroom.persistence.repositories.MiniCursoRepository;
 import com.sogo.classroom.service.declaration.MiniCursoService;

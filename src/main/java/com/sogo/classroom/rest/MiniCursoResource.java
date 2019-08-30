@@ -1,6 +1,6 @@
 package com.sogo.classroom.rest;
 
-import com.sogo.classroom.persistence.DTO.MiniCursoCadastroDTO;
+import com.sogo.classroom.persistence.DTO.miniCurso.MiniCursoCadastroDTO;
 import com.sogo.classroom.persistence.models.MiniCurso;
 import com.sogo.classroom.persistence.repositories.MiniCursoRepository;
 import com.sogo.classroom.service.declaration.MiniCursoService;
@@ -27,8 +27,11 @@ public class MiniCursoResource {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public MiniCurso saveMiniCurso(@RequestBody MiniCursoCadastroDTO miniCursoCadastroDTO){
+    public MiniCurso saveMiniCurso(@Valid @RequestBody MiniCursoCadastroDTO miniCursoCadastroDTO){
         return this.miniCursoService.saveMiniCurso(miniCursoCadastroDTO);
     }
+
+    @PostMapping("{id}/alunos")
+    public MiniCurso inscreverAlunoMiniCurso(@PathVariable("id") Long id, @Valid @RequestBody )
 
 }

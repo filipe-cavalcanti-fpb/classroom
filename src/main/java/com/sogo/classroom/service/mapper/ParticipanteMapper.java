@@ -1,6 +1,6 @@
 package com.sogo.classroom.service.mapper;
 
-import com.sogo.classroom.persistence.DTO.ParticipanteCadastroDTO;
+import com.sogo.classroom.persistence.DTO.participante.ParticipanteCadastroDTO;
 import com.sogo.classroom.persistence.models.Participante;
 
 public class ParticipanteMapper {

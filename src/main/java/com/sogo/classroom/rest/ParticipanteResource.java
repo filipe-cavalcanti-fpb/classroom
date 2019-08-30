@@ -1,6 +1,6 @@
 package com.sogo.classroom.rest;
 
-import com.sogo.classroom.persistence.DTO.ParticipanteCadastroDTO;
+import com.sogo.classroom.persistence.DTO.participante.ParticipanteCadastroDTO;
 import com.sogo.classroom.persistence.models.Participante;
 import com.sogo.classroom.service.declaration.ParticipanteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "participantes")
 public class ParticipanteResource {
@@ -18,7 +20,7 @@ public class ParticipanteResource {
     private ParticipanteService participanteService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    Participante saveParticipante(@RequestBody ParticipanteCadastroDTO participanteCadastroDTO) {
+    Participante saveParticipante(@Valid  @RequestBody ParticipanteCadastroDTO participanteCadastroDTO) {
         return this.participanteService.saveParticipante(participanteCadastroDTO);
     }
 }

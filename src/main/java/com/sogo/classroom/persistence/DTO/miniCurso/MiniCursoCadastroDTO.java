@@ -1,4 +1,4 @@
-package com.sogo.classroom.persistence.DTO;
+package com.sogo.classroom.persistence.DTO.miniCurso;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
@@ -21,8 +21,8 @@ public class MiniCursoCadastroDTO implements Serializable {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime dataRealizacao;
 
-    @NotNull
-    @Min(value = 0)
+    @NotNull(message = "O atributo não pode ser nulo")
+    @Min(value = 0, message = "O atributo não pode ser menor que zero")
     private Byte duracaoPrevista;
 
     @NotNull

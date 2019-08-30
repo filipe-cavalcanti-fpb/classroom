@@ -19,6 +19,10 @@ public class Telefone implements Serializable {
     @Column(name = "numero_telefone", nullable = false, length = 50)
     private String numeroTelefone;
 
+    public Telefone(String numeroTelefone) {
+        this.numeroTelefone = numeroTelefone;
+    }
+
     public Long getId() {
         return id;
     }
