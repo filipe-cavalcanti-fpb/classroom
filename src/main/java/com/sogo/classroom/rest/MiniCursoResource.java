@@ -5,6 +5,7 @@ import com.sogo.classroom.persistence.DTO.miniCurso.ParticipanteMiniCursoInscric
 import com.sogo.classroom.persistence.models.MiniCurso;
 import com.sogo.classroom.persistence.repositories.MiniCursoRepository;
 import com.sogo.classroom.service.declaration.MiniCursoService;
+import com.sogo.classroom.service.declaration.ParticipanteMiniCursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,9 @@ public class MiniCursoResource {
     @Autowired
     private MiniCursoService miniCursoService;
 
+    @Autowired
+    private ParticipanteMiniCursoService participanteMiniCursoService;
+
     @GetMapping
     public List<MiniCurso> findAll(){
         return this.miniCursoRepository.findAll();
@@ -32,9 +36,14 @@ public class MiniCursoResource {
         return this.miniCursoService.saveMiniCurso(miniCursoCadastroDTO);
     }
 
+    //TODO: filipe.cavalcanti - alterar retorno da função
     @PostMapping("{id}/alunos")
-    public MiniCurso inscreverAlunoMiniCurso(@PathVariable("id") Long id, @Valid @RequestBody ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO) {
+    public String inscreverAlunoMiniCurso(@PathVariable("id") Long id, @Valid @RequestBody ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO) {
         return this.miniCursoService.inscreverAlunoMiniCurso(id, participanteMiniCursoInscricaoDTO);
     }
 
+    @GetMapping("/alunos/{idAluno}")
+    public List<MiniCurso> consultarMinicursosParticipante(@PathVariable("idAluno") Long idAluno){
+        return this.participanteMiniCursoService.consultarMinicursosParticipante(idAluno);
+    }
 }

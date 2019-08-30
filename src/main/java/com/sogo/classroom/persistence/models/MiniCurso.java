@@ -21,7 +21,7 @@ public class MiniCurso implements Serializable {
     @Column(name = "nome", nullable = false, length = 150)
     private String nome;
 
-    @Column(name = "data_realizacao", nullable = false, unique = false)
+    @Column(name = "data_realizacao", nullable = false, unique = true)
     private LocalDateTime dataRealizacao;
 
     @Column(name = "duracao_prevista", nullable = false)
@@ -30,10 +30,7 @@ public class MiniCurso implements Serializable {
     @Column(name = "total_vagas", nullable = false, columnDefinition = "int default 0")
     private Integer totalVagas;
 
-    @OneToMany(mappedBy = "miniCurso", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ParticipanteMiniCurso> participantesMiniCurso;
-
-    @Column(name = "vagas_preenchidas", columnDefinition = "int default 0")
+    @Column(name = "vagas_preenchidas", nullable = false, columnDefinition = "int default 0")
     private Integer vagasPreenchidas;
 
     @ManyToOne
@@ -112,13 +109,5 @@ public class MiniCurso implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getNome(), getDataRealizacao(), getDuracaoPrevista(), getTotalVagas(), getVagasPreenchidas());
-    }
-
-    public List<ParticipanteMiniCurso> getParticipantesMiniCurso() {
-        return participantesMiniCurso;
-    }
-
-    public void setParticipantesMiniCurso(List<ParticipanteMiniCurso> participantesMiniCurso) {
-        this.participantesMiniCurso = participantesMiniCurso;
     }
 }

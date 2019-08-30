@@ -27,7 +27,7 @@ public class ParticipanteServiceImpl implements ParticipanteService {
     }
 
     @Override
-    public Participante findById(Long id) throws NoSuchElementException {
-        return this.participanteRepository.findById(id).isPresent();
+    public Optional<Participante> findById(Long id) throws NoSuchElementException {
+        return this.participanteRepository.findById(id);
     }
 }

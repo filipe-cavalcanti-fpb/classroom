@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
@@ -27,5 +28,10 @@ public class ParticipanteMiniCursoServiceImpl implements ParticipanteMiniCursoSe
         participanteMiniCurso.setMiniCurso(miniCurso);
         participanteMiniCurso.setParticipante(participante);
         return this.participanteMiniCursoRepository.save(participanteMiniCurso);
+    }
+
+    @Override
+    public List<MiniCurso> consultarMinicursosParticipante(Long idParticipante) {
+        return this.participanteMiniCursoRepository.consultarMinicursosParticipante(idParticipante);
     }
 }

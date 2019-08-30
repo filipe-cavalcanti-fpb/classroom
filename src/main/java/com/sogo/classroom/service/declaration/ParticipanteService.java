@@ -9,7 +9,7 @@ public interface ParticipanteService {
 
     Participante saveParticipante(ParticipanteCadastroDTO participanteCadastroDTO);
 
-    Participante findById(Long id);
+    Optional<Participante> findById(Long id);
 
 
 }

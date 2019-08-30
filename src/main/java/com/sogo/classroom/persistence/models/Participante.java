@@ -21,9 +21,6 @@ public class Participante extends Pessoa {
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
 
-    @OneToMany(mappedBy = "participante", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    private List<ParticipanteMiniCurso> miniCursosInscritos;
-
     public String getCpf() {
         return cpf;
     }
@@ -40,14 +37,6 @@ public class Participante extends Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-    public List<ParticipanteMiniCurso> getMiniCursosInscritos() {
-        return miniCursosInscritos;
-    }
-
-    public void setMiniCursosInscritos(List<ParticipanteMiniCurso> miniCursosInscritos) {
-        this.miniCursosInscritos = miniCursosInscritos;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,12 +44,11 @@ public class Participante extends Pessoa {
         if (!super.equals(o)) return false;
         Participante that = (Participante) o;
         return Objects.equals(cpf, that.cpf) &&
-                Objects.equals(dataNascimento, that.dataNascimento) &&
-                Objects.equals(miniCursosInscritos, that.miniCursosInscritos);
+                Objects.equals(dataNascimento, that.dataNascimento);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), cpf, dataNascimento, miniCursosInscritos);
+        return Objects.hash(super.hashCode(), cpf, dataNascimento);
     }
 }

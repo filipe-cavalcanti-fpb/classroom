@@ -8,5 +8,10 @@ public interface MiniCursoService {
 
     MiniCurso saveMiniCurso(MiniCursoCadastroDTO miniCursoCadastroDTO);
 
-    MiniCurso inscreverAlunoMiniCurso(Long id, ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO);
+    String inscreverAlunoMiniCurso(Long id, ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO);
+
+    MiniCurso findById(Long id);
+
+    public void atualizar(MiniCurso miniCurso);
+
 }
