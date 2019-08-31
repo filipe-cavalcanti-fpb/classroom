@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
@@ -40,7 +39,7 @@ public class MiniCursoServiceImpl implements MiniCursoService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public String inscreverParticipanteMiniCurso(Long id, ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO) {
+    public String inscreverParticipanteMiniCurso(Long id, ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO) throws NoSuchElementException {
         MiniCurso miniCurso = this.miniCursoRepository.findById(id).orElseThrow(NoSuchElementException::new);
 
         Participante participante = this.participanteService.findById(participanteMiniCursoInscricaoDTO.getIdParticipante()).orElseThrow(NoSuchElementException::new);

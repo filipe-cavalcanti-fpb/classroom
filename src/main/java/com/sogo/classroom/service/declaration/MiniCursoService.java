@@ -6,12 +6,13 @@ import com.sogo.classroom.persistence.DTO.miniCurso.ParticipanteMiniCursoInscric
 import com.sogo.classroom.persistence.models.MiniCurso;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public interface MiniCursoService {
 
     MiniCurso saveMiniCurso(MiniCursoCadastroDTO miniCursoCadastroDTO);
 
-    String inscreverParticipanteMiniCurso(Long id, ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO);
+    String inscreverParticipanteMiniCurso(Long id, ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO) throws NoSuchElementException;
 
     MiniCurso findById(Long id);
 
