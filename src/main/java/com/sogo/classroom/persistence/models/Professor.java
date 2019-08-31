@@ -3,6 +3,7 @@ package com.sogo.classroom.persistence.models;
 import com.sogo.classroom.util.ConstantesModelUtil;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,8 +17,8 @@ public class Professor extends Pessoa{
     private String matricula;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
-    @JoinColumn(name = "fk_professor")
-    private Set<Telefone> telefones;
+    @JoinColumn(name = "fk_professor", foreignKey = @ForeignKey(name = "fk_professor"))
+    private List<Telefone> telefones;
 
     public String getMatricula() {
         return matricula;
@@ -27,11 +28,11 @@ public class Professor extends Pessoa{
         this.matricula = matricula;
     }
 
-    public Set<Telefone> getTelefones() {
+    public List<Telefone> getTelefones() {
         return telefones;
     }
 
-    public void setTelefones(Set<Telefone> telefones) {
+    public void setTelefones(List<Telefone> telefones) {
         this.telefones = telefones;
     }
 

@@ -31,7 +31,7 @@ public class MiniCurso implements Serializable {
     private Integer totalVagas;
 
     @Column(name = "vagas_preenchidas", nullable = false, columnDefinition = "int default 0")
-    private Integer vagasPreenchidas;
+    private int vagasPreenchidas;
 
     @ManyToOne
     @JoinColumn(name = "fk_professor")

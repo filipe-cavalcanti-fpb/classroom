@@ -1,6 +1,7 @@
 package com.sogo.classroom.service.Implementation;
 
 import com.sogo.classroom.persistence.DTO.miniCurso.MiniCursoCadastroDTO;
+import com.sogo.classroom.persistence.DTO.miniCurso.MiniCursoConsultaDTO;
 import com.sogo.classroom.persistence.DTO.miniCurso.ParticipanteMiniCursoInscricaoDTO;
 import com.sogo.classroom.persistence.models.MiniCurso;
 import com.sogo.classroom.persistence.models.Participante;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -38,9 +40,15 @@ public class MiniCursoServiceImpl implements MiniCursoService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public String inscreverAlunoMiniCurso(Long id, ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO) {
+    public String inscreverParticipanteMiniCurso(Long id, ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO) {
         MiniCurso miniCurso = this.miniCursoRepository.findById(id).orElseThrow(NoSuchElementException::new);
+
         Participante participante = this.participanteService.findById(participanteMiniCursoInscricaoDTO.getIdParticipante()).orElseThrow(NoSuchElementException::new);
+        if(this.participanteMiniCursoService.verificarInscricao(participante)){
+            //TODO: filipe.cavalcanti - alterar esse trecho
+            return "participante já incluso";
+        }
+        miniCurso.setVagasPreenchidas(miniCurso.getVagasPreenchidas()+1);
         this.participanteMiniCursoService.inscreverParticipanteMiniCurso(miniCurso, participante);
         return "Inclusão realizada com sucesso";
     }
@@ -54,5 +62,10 @@ public class MiniCursoServiceImpl implements MiniCursoService {
     @Transactional(propagation = Propagation.REQUIRED)
     public void atualizar(MiniCurso miniCurso) {
         this.miniCursoRepository.save(miniCurso);
+    }
+
+    @Override
+    public List<MiniCursoConsultaDTO> consultarMiniCursosMinistradosProfessor(Long idProfessor) {
+        return this.miniCursoRepository.consultarMiniCursosMinistradosProfessor(idProfessor);
     }
 }

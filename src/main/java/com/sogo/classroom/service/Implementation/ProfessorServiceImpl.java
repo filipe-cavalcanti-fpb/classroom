@@ -1,5 +1,6 @@
 package com.sogo.classroom.service.Implementation;
 
+import com.sogo.classroom.persistence.DTO.miniCurso.MiniCursoConsultaDTO;
 import com.sogo.classroom.persistence.DTO.miniCurso.ProfessorMinicursoVinculoDTO;
 import com.sogo.classroom.persistence.DTO.professor.ProfessorCadastroDTO;
 import com.sogo.classroom.persistence.models.MiniCurso;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -45,4 +47,5 @@ public class ProfessorServiceImpl implements ProfessorService {
     public Professor findById(Long id) {
         return this.professorRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
+
 }

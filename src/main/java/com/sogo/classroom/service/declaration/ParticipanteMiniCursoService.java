@@ -11,4 +11,6 @@ public interface ParticipanteMiniCursoService {
     ParticipanteMiniCurso inscreverParticipanteMiniCurso(MiniCurso miniCurso, Participante participante);
 
     List<MiniCurso> consultarMinicursosParticipante(Long idParticipante);
+
+    public Boolean verificarInscricao(Participante participante);
 }

@@ -31,7 +31,15 @@ public class ParticipanteMiniCursoServiceImpl implements ParticipanteMiniCursoSe
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<MiniCurso> consultarMinicursosParticipante(Long idParticipante) {
         return this.participanteMiniCursoRepository.consultarMinicursosParticipante(idParticipante);
     }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public Boolean verificarInscricao(Participante participante) {
+        return this.participanteMiniCursoRepository.existsByParticipante(participante);
+    }
+
 }

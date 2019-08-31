@@ -37,13 +37,13 @@ public class MiniCursoResource {
     }
 
     //TODO: filipe.cavalcanti - alterar retorno da função
-    @PostMapping("{id}/alunos")
-    public String inscreverAlunoMiniCurso(@PathVariable("id") Long id, @Valid @RequestBody ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO) {
-        return this.miniCursoService.inscreverAlunoMiniCurso(id, participanteMiniCursoInscricaoDTO);
+    @PostMapping("{id}/participantes")
+    public String inscreverParticipanteMiniCurso(@PathVariable("id") Long id, @Valid @RequestBody ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO) {
+        return this.miniCursoService.inscreverParticipanteMiniCurso(id, participanteMiniCursoInscricaoDTO);
     }
 
-    @GetMapping("/alunos/{idAluno}")
-    public List<MiniCurso> consultarMinicursosParticipante(@PathVariable("idAluno") Long idAluno){
-        return this.participanteMiniCursoService.consultarMinicursosParticipante(idAluno);
+    @GetMapping("/alunos/{idParticipante}")
+    public List<MiniCurso> consultarMinicursosParticipante(@PathVariable("idParticipante") Long idParticipante){
+        return this.participanteMiniCursoService.consultarMinicursosParticipante(idParticipante);
     }
 }
