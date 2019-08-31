@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/mini-cursos")
+@RequestMapping(value = "api/mini-cursos")
 public class MiniCursoResource {
 
     @Autowired

@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "professores")
+@RequestMapping(value = "api/professores")
 public class ProfessorResource {
 
     @Autowired
