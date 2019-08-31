@@ -13,11 +13,11 @@ public class MiniCursoCadastroDTO implements Serializable {
 
     private static final long serialVersionUID = -6459368145631381206L;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "O nome não poder ser nulo")
+    @NotBlank(message = "O nome não pode ser vázio")
     private String nome;
 
-    @NotNull
+    @NotNull(message = "A data de realização não pode ser nula")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime dataRealizacao;
 
@@ -25,7 +25,7 @@ public class MiniCursoCadastroDTO implements Serializable {
     @Min(value = 0, message = "O atributo não pode ser menor que zero")
     private Byte duracaoPrevista;
 
-    @NotNull
+    @NotNull(message = "O total de vagas não pode ser nulo")
     @Min(value = 0)
     private Integer totalVagas;
 
