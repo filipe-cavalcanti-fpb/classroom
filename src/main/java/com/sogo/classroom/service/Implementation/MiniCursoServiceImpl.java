@@ -9,6 +9,7 @@ import com.sogo.classroom.persistence.repositories.MiniCursoRepository;
 import com.sogo.classroom.service.declaration.MiniCursoService;
 import com.sogo.classroom.service.declaration.ParticipanteMiniCursoService;
 import com.sogo.classroom.service.declaration.ParticipanteService;
+import com.sogo.classroom.service.exceptions.BusinessException;
 import com.sogo.classroom.service.mapper.MiniCursoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,8 +45,7 @@ public class MiniCursoServiceImpl implements MiniCursoService {
 
         Participante participante = this.participanteService.findById(participanteMiniCursoInscricaoDTO.getIdParticipante()).orElseThrow(NoSuchElementException::new);
         if(this.participanteMiniCursoService.verificarInscricao(participante)){
-            //TODO: filipe.cavalcanti - alterar esse trecho
-            return "participante já incluso";
+            throw new BusinessException("Participante já cadastrado ao mini curso");
         }
         miniCurso.setVagasPreenchidas(miniCurso.getVagasPreenchidas()+1);
         this.participanteMiniCursoService.inscreverParticipanteMiniCurso(miniCurso, participante);
