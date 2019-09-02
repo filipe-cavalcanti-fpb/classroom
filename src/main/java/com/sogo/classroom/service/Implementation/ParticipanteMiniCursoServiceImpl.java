@@ -5,6 +5,7 @@ import com.sogo.classroom.persistence.models.Participante;
 import com.sogo.classroom.persistence.models.ParticipanteMiniCurso;
 import com.sogo.classroom.persistence.repositories.ParticipanteMiniCursoRepository;
 import com.sogo.classroom.service.declaration.ParticipanteMiniCursoService;
+import com.sogo.classroom.service.exceptions.BusinessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -23,6 +24,9 @@ public class ParticipanteMiniCursoServiceImpl implements ParticipanteMiniCursoSe
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public ParticipanteMiniCurso inscreverParticipanteMiniCurso(MiniCurso miniCurso, Participante participante) {
+        if(miniCurso.getVagasPreenchidas().equals(miniCurso.getTotalVagas())){
+            throw new BusinessException("Mini curso esgotado");
+        }
         ParticipanteMiniCurso participanteMiniCurso = new ParticipanteMiniCurso();
         participanteMiniCurso.setDataInscricao(LocalDateTime.now());
         participanteMiniCurso.setMiniCurso(miniCurso);
@@ -40,6 +44,11 @@ public class ParticipanteMiniCursoServiceImpl implements ParticipanteMiniCursoSe
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Boolean verificarInscricao(Participante participante) {
         return this.participanteMiniCursoRepository.existsByParticipante(participante);
+    }
+
+    @Override
+    public Boolean consultarDisponibilidadeDataRealizacao(LocalDateTime dataRealizacao) {
+        return this.participanteMiniCursoRepository.consultarDisponibilidadeDataRealizacao(dataRealizacao);
     }
 
 }

@@ -7,6 +7,8 @@ public class MiniCursoConsultaDTO implements Serializable {
 
     private static final long serialVersionUID = 2470917987571795597L;
 
+    private Long id;
+
     private String nome;
 
     private LocalDateTime dataRealizacao;
@@ -17,12 +19,17 @@ public class MiniCursoConsultaDTO implements Serializable {
 
     private Integer vagasPreenchidas;
 
-    public MiniCursoConsultaDTO(String nome, LocalDateTime dataRealizacao, Byte duracaoPrevista, Integer totalVagas, Integer vagasPreenchidas) {
+    private String nomeProfessor;
+
+    public MiniCursoConsultaDTO(Long id, String nome, LocalDateTime dataRealizacao, Byte duracaoPrevista,
+                                Integer totalVagas, Integer vagasPreenchidas, String nomeProfessor) {
+        this.id = id;
         this.nome = nome;
         this.dataRealizacao = dataRealizacao;
         this.duracaoPrevista = duracaoPrevista;
         this.totalVagas = totalVagas;
         this.vagasPreenchidas = vagasPreenchidas;
+        this.nomeProfessor = nomeProfessor;
     }
 
     public String getNome() {
@@ -63,5 +70,21 @@ public class MiniCursoConsultaDTO implements Serializable {
 
     public void setVagasPreenchidas(Integer vagasPreenchidas) {
         this.vagasPreenchidas = vagasPreenchidas;
+    }
+
+    public String getNomeProfessor() {
+        return nomeProfessor;
+    }
+
+    public void setNomeProfessor(String nomeProfessor) {
+        this.nomeProfessor = nomeProfessor;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

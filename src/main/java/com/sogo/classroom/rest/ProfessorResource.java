@@ -3,6 +3,7 @@ package com.sogo.classroom.rest;
 import com.sogo.classroom.persistence.DTO.miniCurso.MiniCursoConsultaDTO;
 import com.sogo.classroom.persistence.DTO.miniCurso.ProfessorMinicursoVinculoDTO;
 import com.sogo.classroom.persistence.DTO.professor.ProfessorCadastroDTO;
+import com.sogo.classroom.persistence.DTO.professor.ProfessorConsultaDTO;
 import com.sogo.classroom.persistence.models.Professor;
 import com.sogo.classroom.service.declaration.MiniCursoService;
 import com.sogo.classroom.service.declaration.ProfessorService;
@@ -36,6 +37,11 @@ public class ProfessorResource {
     @GetMapping("{idProfessor}/mini-cursos")
     public List<MiniCursoConsultaDTO>consultarMiniCursosMinistradosProfessor(@PathVariable("idProfessor") Long idProfessor){
         return this.miniCursoService.consultarMiniCursosMinistradosProfessor(idProfessor);
+    }
+
+    @GetMapping
+    public List<ProfessorConsultaDTO> consultarProfessores() {
+        return this.professorService.consultarProfessores();
     }
 
 }

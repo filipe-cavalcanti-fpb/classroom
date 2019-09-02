@@ -4,7 +4,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.List;
 
 public class ProfessorCadastroDTO implements Serializable {
 
@@ -17,7 +16,7 @@ public class ProfessorCadastroDTO implements Serializable {
     private String matricula;
 
     @NotEmpty
-    private List<String> telefones;
+    private String telefones;
 
     @Email
     private String email;
@@ -41,11 +40,11 @@ public class ProfessorCadastroDTO implements Serializable {
         this.matricula = matricula;
     }
 
-    public List<String> getTelefones() {
+    public String getTelefones() {
         return telefones;
     }
 
-    public void setTelefones(List<String> telefones) {
+    public void setTelefones(String telefones) {
         this.telefones = telefones;
     }
 

@@ -4,6 +4,7 @@ import com.sogo.classroom.persistence.models.MiniCurso;
 import com.sogo.classroom.persistence.models.Participante;
 import com.sogo.classroom.persistence.models.ParticipanteMiniCurso;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ParticipanteMiniCursoService {
@@ -12,5 +13,7 @@ public interface ParticipanteMiniCursoService {
 
     List<MiniCurso> consultarMinicursosParticipante(Long idParticipante);
 
-    public Boolean verificarInscricao(Participante participante);
+    Boolean verificarInscricao(Participante participante);
+
+    Boolean consultarDisponibilidadeDataRealizacao(LocalDateTime dataRealizacao);
 }

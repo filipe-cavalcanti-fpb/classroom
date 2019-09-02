@@ -1,7 +1,9 @@
 package com.sogo.classroom.rest;
 
 import com.sogo.classroom.persistence.DTO.miniCurso.MiniCursoCadastroDTO;
+import com.sogo.classroom.persistence.DTO.miniCurso.MiniCursoConsultaDTO;
 import com.sogo.classroom.persistence.DTO.miniCurso.ParticipanteMiniCursoInscricaoDTO;
+import com.sogo.classroom.persistence.DTO.response.MensagemRetornoDTO;
 import com.sogo.classroom.persistence.models.MiniCurso;
 import com.sogo.classroom.persistence.repositories.MiniCursoRepository;
 import com.sogo.classroom.service.declaration.MiniCursoService;
@@ -27,8 +29,8 @@ public class MiniCursoResource {
     private ParticipanteMiniCursoService participanteMiniCursoService;
 
     @GetMapping
-    public List<MiniCurso> findAll(){
-        return this.miniCursoRepository.findAll();
+    public List<MiniCursoConsultaDTO> consultarMiniCursos() {
+        return this.miniCursoService.consultarMiniCursos();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,9 +38,8 @@ public class MiniCursoResource {
         return this.miniCursoService.saveMiniCurso(miniCursoCadastroDTO);
     }
 
-    //TODO: filipe.cavalcanti - alterar retorno da função
     @PostMapping("{id}/participantes")
-    public String inscreverParticipanteMiniCurso(@PathVariable("id") Long id, @Valid @RequestBody ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO) {
+    public MensagemRetornoDTO inscreverParticipanteMiniCurso(@PathVariable("id") Long id, @Valid @RequestBody ParticipanteMiniCursoInscricaoDTO participanteMiniCursoInscricaoDTO) {
         return this.miniCursoService.inscreverParticipanteMiniCurso(id, participanteMiniCursoInscricaoDTO);
     }
 

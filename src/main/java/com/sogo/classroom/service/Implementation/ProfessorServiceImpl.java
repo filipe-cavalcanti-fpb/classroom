@@ -1,8 +1,8 @@
 package com.sogo.classroom.service.Implementation;
 
-import com.sogo.classroom.persistence.DTO.miniCurso.MiniCursoConsultaDTO;
 import com.sogo.classroom.persistence.DTO.miniCurso.ProfessorMinicursoVinculoDTO;
 import com.sogo.classroom.persistence.DTO.professor.ProfessorCadastroDTO;
+import com.sogo.classroom.persistence.DTO.professor.ProfessorConsultaDTO;
 import com.sogo.classroom.persistence.models.MiniCurso;
 import com.sogo.classroom.persistence.models.Professor;
 import com.sogo.classroom.persistence.repositories.ProfessorRepository;
@@ -46,6 +46,11 @@ public class ProfessorServiceImpl implements ProfessorService {
     @Override
     public Professor findById(Long id) {
         return this.professorRepository.findById(id).orElseThrow(NoSuchElementException::new);
+    }
+
+    @Override
+    public List<ProfessorConsultaDTO> consultarProfessores() {
+        return this.professorRepository.consultarProfessores();
     }
 
 }

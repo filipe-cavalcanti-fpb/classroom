@@ -26,8 +26,11 @@ public class MiniCursoCadastroDTO implements Serializable {
     private Byte duracaoPrevista;
 
     @NotNull(message = "O total de vagas não pode ser nulo")
-    @Min(value = 0)
+    @Min(value = 0, message = "o total de vagas não poder ser zero")
     private Integer totalVagas;
+
+    @NotNull
+    private Long idProfessor;
 
     public String getNome() {
         return nome;
@@ -59,5 +62,13 @@ public class MiniCursoCadastroDTO implements Serializable {
 
     public void setTotalVagas(Integer totalVagas) {
         this.totalVagas = totalVagas;
+    }
+
+    public Long getIdProfessor() {
+        return idProfessor;
+    }
+
+    public void setIdProfessor(Long idProfessor) {
+        this.idProfessor = idProfessor;
     }
 }
